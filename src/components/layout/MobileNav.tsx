@@ -2,13 +2,17 @@ import { FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useUIStore } from '@/store/useUIStore'
 
-const TABS = [
+type Tab =
+  | { to: string; label: string; icon: string; exact?: boolean }
+  | { add: true; label: string; icon: string }
+
+const TABS: Tab[] = [
   { to: '/', label: '總覽', icon: '◐', exact: true },
   { to: '/transactions', label: '交易', icon: '☰' },
   { add: true, label: '新增', icon: '＋' },
   { to: '/budget', label: '預算', icon: '◧' },
   { to: '/settings/categories', label: '設定', icon: '⚙' },
-] as const
+]
 
 const MobileNav: FC = () => {
   const openModal = useUIStore((s) => s.openTransactionModal)

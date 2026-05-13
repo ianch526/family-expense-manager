@@ -12,7 +12,7 @@ const MemberManage: FC = () => {
   const pushToast = useUIStore((s) => s.pushToast)
 
   const [name, setName] = useState('')
-  const [color, setColor] = useState(COLOR_PALETTE[0].color)
+  const [color, setColor] = useState<string>(COLOR_PALETTE[0].color)
   const [submitting, setSubmitting] = useState(false)
   const [deleteTarget, setDeleteTarget] = useState<Member | null>(null)
   const [reassignTo, setReassignTo] = useState<string>('')
