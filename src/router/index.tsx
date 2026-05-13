@@ -10,7 +10,12 @@ import Settings from '@/pages/Settings'
 import CategoryManage from '@/pages/Settings/CategoryManage'
 import MemberManage from '@/pages/Settings/MemberManage'
 
-export const router = createBrowserRouter([
+// 部署到子路徑（如 GitHub Pages /family-expense-manager/）時，Vite 會把 BASE_URL
+// 設成該路徑；本機 dev 則為 '/'。React Router 需用對應的 basename 才能正確匹配。
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/'
+
+export const router = createBrowserRouter(
+  [
   {
     path: '/',
     element: <AppLayout />,
@@ -43,10 +48,12 @@ export const router = createBrowserRouter([
     element: (
       <div className="h-full flex items-center justify-center text-gray-600">
         頁面不存在 ·{' '}
-        <a href="/" className="text-brand underline ml-1">
+        <a href={basename === '/' ? '/' : `${basename}/`} className="text-brand underline ml-1">
           回首頁
         </a>
       </div>
     ),
   },
-])
+  ],
+  { basename },
+)
